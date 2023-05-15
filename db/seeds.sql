@@ -24,7 +24,7 @@ VALUES ("Chief Financial Officer", 250000, 1),
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
-('David', 'Wallace', 1, 1),
+('David', 'Wallace', 1, null),
 ('Jan', 'Levinson', 2, 1),
 ('Michael', 'Scott', 3, 2),
 ('Dwight', 'Shrute', 4, 3),
