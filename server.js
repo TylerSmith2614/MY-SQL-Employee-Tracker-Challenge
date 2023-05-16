@@ -7,10 +7,8 @@ const PORT = process.env.PORT || 3001;
 const db = mysql.createConnection(
   {
     host: "localhost",
-    // MySQL username,
+    // MySQL login,
     user: process.env.DB_USER,
-
-    // MySQL password
     password: process.env.DB_PASSWORD,
     database: "tspapercompany_db",
   },
@@ -67,7 +65,7 @@ function init() {
 
 init();
 
-// View all departments
+// Function to view all departments
 // async function is label that lets javascript know the keyword await. try catch is a strategy for finding errors.
 async function viewAllDepartments() {
   try {
@@ -78,7 +76,16 @@ async function viewAllDepartments() {
     console.log(error);
   }
 }
-// const query = "SELECT roles.title, roles.id, departments.department_name, roles.salary from roles join departments on roles.department_id = departments.id";
+
+// Call back function way to code the function.
+// function viewAllDepartments() {
+//   db.query("SELECT * FROM department", (err, res) => {
+//       if (err) console.log(err)
+//       console.table(res);
+//     init();
+//   })};
+
+// Function to view all Roles
 async function viewAllRoles() {
   try {
     const res = await db.query(
@@ -91,6 +98,7 @@ async function viewAllRoles() {
   }
 }
 
+// Function to view all Employees
 async function viewAllEmployees() {
   try {
     const res = await db.query(
@@ -108,6 +116,7 @@ async function viewAllEmployees() {
   }
 }
 
+// Function to Add a Department
 async function addDepartment() {
   try {
     const answer = await inquirer.prompt([
@@ -127,6 +136,7 @@ async function addDepartment() {
   }
 }
 
+// Function to add a Role
 async function addRole() {
   // WHEN I choose to add a role
   // THEN I am prompted to enter the name, salary, and department for the role and that role is added to the databaseasync function addRole() {
@@ -162,7 +172,7 @@ async function addRole() {
     console.log(error);
   }
 }
-
+// Function to add an Employee
 async function addEmployee() {
   try {
     const roles = await db.query(
@@ -207,6 +217,7 @@ async function addEmployee() {
   }
 }
 
+// Function to update an Employee Role
 async function updateEmployeeRole() {
   try {
     const roles = await db.query(
@@ -240,10 +251,3 @@ async function updateEmployeeRole() {
     console.log(error);
   }
 }
-// Call back function
-// function viewAllDepartments() {
-//   db.query("SELECT * FROM department", (err, res) => {
-//       if (err) console.log(err)
-//       console.table(res);
-//     init();
-//   })};
